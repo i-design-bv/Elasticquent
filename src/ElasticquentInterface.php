@@ -1,4 +1,6 @@
-<?php namespace Elasticquent;
+<?php
+
+namespace Elasticquent;
 
 interface ElasticquentInterface
 {
@@ -151,5 +153,4 @@ interface ElasticquentInterface
      * @return
      */
     public static function getMapping();
-
 }

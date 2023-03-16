@@ -186,7 +186,7 @@ trait ElasticquentTrait
      */
     public static function addAllToIndex()
     {
-        $instance = new static;
+        $instance = new static();
 
         $all = $instance->newQuery()->get(array('*'));
 
@@ -200,7 +200,7 @@ trait ElasticquentTrait
      */
     public static function reindex()
     {
-        $instance = new static;
+        $instance = new static();
 
         $all = $instance->newQuery()->get(array('*'));
 
@@ -223,7 +223,7 @@ trait ElasticquentTrait
      */
     public static function searchByQuery($query = null, $aggregations = null, $sourceFields = null, $limit = null, $offset = null, $sort = null)
     {
-        $instance = new static;
+        $instance = new static();
 
         $params = $instance->getBasicEsParams(true, $limit, $offset);
 
@@ -259,7 +259,7 @@ trait ElasticquentTrait
      */
     public static function complexSearch($params)
     {
-        $instance = new static;
+        $instance = new static();
 
         $result = $instance->getElasticSearchClient()->search($params)->asArray();
 
@@ -277,7 +277,7 @@ trait ElasticquentTrait
      */
     public static function search($term = '')
     {
-        $instance = new static;
+        $instance = new static();
 
         $params = $instance->getBasicEsParams();
 
@@ -386,8 +386,9 @@ trait ElasticquentTrait
             $params['from'] = $offset;
         }
 
-        if($this->getRoutingName())
+        if ($this->getRoutingName()) {
             $params['routing'] = $this->getRoutingName();
+        }
 
         return $params;
     }
@@ -421,7 +422,7 @@ trait ElasticquentTrait
      */
     public static function mappingExists()
     {
-        $instance = new static;
+        $instance = new static();
 
         $mapping = $instance->getMapping();
 
@@ -435,7 +436,7 @@ trait ElasticquentTrait
      */
     public static function getMapping()
     {
-        $instance = new static;
+        $instance = new static();
 
         $params = $instance->getBasicEsParams();
 
@@ -449,7 +450,7 @@ trait ElasticquentTrait
      */
     public static function putMapping()
     {
-        $instance = new static;
+        $instance = new static();
 
         $mapping = $instance->getBasicEsParams();
 
@@ -475,7 +476,7 @@ trait ElasticquentTrait
      */
     public static function createIndex($shards = null, $replicas = null)
     {
-        $instance = new static;
+        $instance = new static();
 
         $client = $instance->getElasticSearchClient();
 
@@ -514,7 +515,7 @@ trait ElasticquentTrait
      */
     public static function deleteIndex()
     {
-        $instance = new static;
+        $instance = new static();
 
         $client = $instance->getElasticSearchClient();
 
@@ -537,13 +538,13 @@ trait ElasticquentTrait
     public function newFromHitBuilder($hit = array())
     {
         $key_name = $this->getKeyName();
-        
+
         $attributes = $hit['_source'];
 
         if (isset($hit['_id'])) {
             $attributes[$key_name] = is_int($hit['_id']) ? intval($hit['_id']) : $hit['_id'];
         }
-        
+
         // Add fields to attributes
         if (isset($hit['fields'])) {
             foreach ($hit['fields'] as $key => $value) {
@@ -590,7 +591,7 @@ trait ElasticquentTrait
      */
     public static function hydrateElasticquentResult(array $items, $meta = null)
     {
-        $instance = new static;
+        $instance = new static();
 
         $items = array_map(function ($item) use ($instance) {
             return $instance->newFromHitBuilder($item);
@@ -636,7 +637,7 @@ trait ElasticquentTrait
         $items = array_map(function ($item) use ($instance, $parentRelation) {
             // Convert all null relations into empty arrays
             $item = $item ?: [];
-            
+
             return static::newFromBuilderRecursive($instance, $item, $parentRelation);
         }, $items);
 

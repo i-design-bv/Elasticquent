@@ -6,7 +6,7 @@ class ElasticquentConfigTraitTest extends TestCase
 {
     public function setUp(): void
     {
-        $this->model = new TestModel;
+        $this->model = new TestModel();
     }
 
     public function testAccesssToConfig()

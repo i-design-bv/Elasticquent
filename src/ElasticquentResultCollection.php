@@ -1,4 +1,6 @@
-<?php namespace Elasticquent;
+<?php
+
+namespace Elasticquent;
 
 use Elasticquent\ElasticquentPaginator as Paginator;
 
@@ -131,7 +133,7 @@ class ElasticquentResultCollection extends \Illuminate\Database\Eloquent\Collect
     public function paginate($pageLimit = 25)
     {
         $page = Paginator::resolveCurrentPage() ?: 1;
-       
+
         return new Paginator($this->items, $this->hits, $this->totalHits(), $pageLimit, $page, ['path' => Paginator::resolveCurrentPath()]);
     }
 }

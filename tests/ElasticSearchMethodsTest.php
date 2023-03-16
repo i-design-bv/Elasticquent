@@ -12,8 +12,8 @@
  * specifically returns results consistent with the ElasticSearch PHP client version
  * 2.0 documentation.
  *
- * The Elasticquent method will then format the response and we test that the resulting 
- * Elasticquent results collection methods return the results we expect to verify this. 
+ * The Elasticquent method will then format the response and we test that the resulting
+ * Elasticquent results collection methods return the results we expect to verify this.
  */
 
 use PHPUnit\Framework\TestCase;
@@ -43,12 +43,11 @@ class ElasticSearchMethodsTest extends TestCase
 
     public function setUp(): void
     {
-        $this->model = new SearchTestModel;
+        $this->model = new SearchTestModel();
     }
 
     public function testSuccessfulSearch()
     {
-
         $result = $this->model->search('with results');
 
 

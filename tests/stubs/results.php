@@ -6,17 +6,18 @@
 
 class results
 {
-
     public $data;
 
-    function __construct($type) {
-        if($type == 'successful')
+    public function __construct($type)
+    {
+        if ($type == 'successful') {
             $this->data = $this->successfulResults();
-        else
+        } else {
             $this->data = $this->unsuccessfulResults();
+        }
     }
 
-    function successfulResults()
+    public function successfulResults()
     {
         return (object) [
             'took' => 8,
@@ -50,7 +51,7 @@ class results
         ];
     }
 
-    function unsuccessfulResults()
+    public function unsuccessfulResults()
     {
         return [
             'took' => 4,
@@ -69,7 +70,7 @@ class results
         ];
     }
 
-    function asArray()
+    public function asArray()
     {
         return (array) $this->data;
     }

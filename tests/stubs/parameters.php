@@ -33,5 +33,5 @@ function complexParameters()
             ]
         ]
     ];
-    return $params;   
+    return $params;
 }

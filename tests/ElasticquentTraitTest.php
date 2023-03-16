@@ -2,8 +2,8 @@
 
 use PHPUnit\Framework\TestCase;
 
-class ElasticquentTraitTest extends TestCase {
-
+class ElasticquentTraitTest extends TestCase
+{
     public $modelData = array('name' => 'Test Name');
 
     /**
@@ -13,7 +13,7 @@ class ElasticquentTraitTest extends TestCase {
      */
     public function setup(): void
     {
-        $this->model = new TestModel;
+        $this->model = new TestModel();
         $this->model->fill($this->modelData);
     }
 
@@ -61,7 +61,9 @@ class ElasticquentTraitTest extends TestCase {
         $custom->fill($this->modelData);
 
         $this->assertEquals(
-                array('foo' => 'bar'), $custom->getIndexDocumentData());
+            array('foo' => 'bar'),
+            $custom->getIndexDocumentData()
+        );
     }
 
     /**
@@ -72,5 +74,4 @@ class ElasticquentTraitTest extends TestCase {
         $this->assertFalse($this->model->isDocument());
         $this->assertNull($this->model->documentScore());
     }
-
 }

@@ -7,7 +7,7 @@ class ElasticquentClientTraitTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->model = new TestModel;
+        $this->model = new TestModel();
     }
 
     public function testClient()
