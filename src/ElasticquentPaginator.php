@@ -1,4 +1,6 @@
-<?php namespace Elasticquent;
+<?php
+
+namespace Elasticquent;
 
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Support\Collection;
@@ -10,7 +12,7 @@ class ElasticquentPaginator extends Paginator
      *
      * @param  mixed  $items
      * @param  mixed  $hits
-     * @param  int  $total
+     * @param  int|array  $total
      * @param  int  $perPage
      * @param  int|null  $currentPage
      * @param  array  $options (path, query, fragment, pageName)
@@ -20,6 +22,7 @@ class ElasticquentPaginator extends Paginator
         foreach ($options as $key => $value) {
             $this->{$key} = $value;
         }
+
         $this->total = $total['value'] ?? $total;
         $this->perPage = $perPage;
         $this->lastPage = (int) ceil($this->total / $this->perPage);
@@ -37,16 +40,16 @@ class ElasticquentPaginator extends Paginator
     public function toArray()
     {
         return [
-            'total'         => $this->total(),
-            'per_page'      => $this->perPage(),
-            'current_page'  => $this->currentPage(),
-            'last_page'     => $this->lastPage(),
+            'total' => $this->total(),
+            'per_page' => $this->perPage(),
+            'current_page' => $this->currentPage(),
+            'last_page' => $this->lastPage(),
             'next_page_url' => $this->nextPageUrl(),
             'prev_page_url' => $this->previousPageUrl(),
-            'from'          => $this->firstItem(),
-            'to'            => $this->lastItem(),
-            'hits'          => $this->hits,
-            'data'          => $this->items->toArray(),
+            'from' => $this->firstItem(),
+            'to' => $this->lastItem(),
+            'hits' => $this->hits,
+            'data' => $this->items->toArray(),
         ];
     }
 }
